@@ -24,7 +24,8 @@
     "class",
     "enumeration",
     "polymorphic",
-    "powerful"
+    "powerful",
+    "polymorphism"
   ],
   "license": "Apache-2.0",
   "main": "index.js",
