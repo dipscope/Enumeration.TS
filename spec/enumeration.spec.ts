@@ -11,17 +11,17 @@ describe('Enumeration', () =>
 
         expect(permissionX).toBeDefined();
         expect(permissionX).toBeInstanceOf(Permission);
-        expect(permissionX).toBe(Permission.none);
+        expect(permissionX).toBe(Permission.None);
         expect(permissionX?.name).toBe('None');
         expect(permissionY).toBeUndefined();
 
-        const colorX = Color.get('#800000');
-        const colorY = Color.get('#453427');
+        const colorX = Color.get('Maroon');
+        const colorY = Color.get('Green');
 
         expect(colorX).toBeDefined();
         expect(colorX).toBeInstanceOf(Color);
-        expect(colorX).toBe(Color.maroon);
-        expect(colorX?.name).toBe('Maroon');
+        expect(colorX).toBe(Color.Maroon);
+        expect(colorX?.hex).toBe('#800000');
         expect(colorY).toBeUndefined();
 
         const shapeX = Shape.get(1);
@@ -29,7 +29,7 @@ describe('Enumeration', () =>
 
         expect(shapeX).toBeDefined();
         expect(shapeX).toBeInstanceOf(Triangle);
-        expect(shapeX).toBe(Shape.triangle);
+        expect(shapeX).toBe(Shape.Triangle);
         expect(shapeX?.sides).toBe(3);
         expect(shapeY).toBeUndefined();
     });
@@ -44,8 +44,8 @@ describe('Enumeration', () =>
         expect(hasPermissionY).toBeDefined()
         expect(hasPermissionY).toBe(false);
 
-        const hasColorX = Color.has('#C0C0C0');
-        const hasColorY = Color.has('#C1C1C1');
+        const hasColorX = Color.has('Silver');
+        const hasColorY = Color.has('Green');
 
         expect(hasColorX).toBeDefined()
         expect(hasColorX).toBe(true);
@@ -176,81 +176,136 @@ describe('Enumeration', () =>
     {
         const permissionMap = Permission.map();
 
-        expect(permissionMap.get(1)).toBe(Permission.none);
-        expect(permissionMap.get(2)).toBe(Permission.view);
-        expect(permissionMap.get(3)).toBe(Permission.create);
-        expect(permissionMap.get(4)).toBe(Permission.edit);
-        expect(permissionMap.get(5)).toBe(Permission.delete);
+        expect(permissionMap.get(1)).toBe(Permission.None);
+        expect(permissionMap.get(2)).toBe(Permission.View);
+        expect(permissionMap.get(3)).toBe(Permission.Create);
+        expect(permissionMap.get(4)).toBe(Permission.Edit);
+        expect(permissionMap.get(5)).toBe(Permission.Delete);
 
         const colorMap = Color.map();
 
-        expect(colorMap.get('#FF0000')).toBe(Color.red);
-        expect(colorMap.get('#00FF00')).toBe(Color.lime);
-        expect(colorMap.get('#000080')).toBe(Color.navy);
-        expect(colorMap.get('#800000')).toBe(Color.maroon);
-        expect(colorMap.get('#C0C0C0')).toBe(Color.silver);
+        expect(colorMap.get('Red')).toBe(Color.Red);
+        expect(colorMap.get('Lime')).toBe(Color.Lime);
+        expect(colorMap.get('Navy')).toBe(Color.Navy);
+        expect(colorMap.get('Maroon')).toBe(Color.Maroon);
+        expect(colorMap.get('Silver')).toBe(Color.Silver);
 
         const shapeMap = Shape.map();
 
-        expect(shapeMap.get(1)).toBe(Shape.triangle);
-        expect(shapeMap.get(2)).toBe(Shape.square);
-        expect(shapeMap.get(3)).toBe(Shape.pentagon);
-        expect(shapeMap.get(4)).toBe(Shape.hexagon);
-        expect(shapeMap.get(5)).toBe(Shape.heptagon);
+        expect(shapeMap.get(1)).toBe(Shape.Triangle);
+        expect(shapeMap.get(2)).toBe(Shape.Square);
+        expect(shapeMap.get(3)).toBe(Shape.Pentagon);
+        expect(shapeMap.get(4)).toBe(Shape.Hexagon);
+        expect(shapeMap.get(5)).toBe(Shape.Heptagon);
     });
 
     it('should perform comparisons', () =>
     {
-        expect(Permission.create.eq(Permission.create)).toBe(true);
-        expect(Permission.create.eq(Permission.view)).toBe(false);
-        expect(Permission.delete.neq(Permission.delete)).toBe(false);
-        expect(Permission.delete.neq(Permission.create)).toBe(true);
-        expect(Permission.create.gt(Permission.delete)).toBe(false);
-        expect(Permission.create.gt(Permission.edit)).toBe(false);
-        expect(Permission.edit.gte(Permission.edit)).toBe(true);
-        expect(Permission.view.gte(Permission.edit)).toBe(false);
-        expect(Permission.none.lt(Permission.view)).toBe(true);
-        expect(Permission.edit.lt(Permission.view)).toBe(false);
-        expect(Permission.edit.lte(Permission.edit)).toBe(true);
-        expect(Permission.delete.lte(Permission.edit)).toBe(false);
+        expect(Permission.Create.eq(Permission.Create)).toBe(true);
+        expect(Permission.Create == Permission.Create).toBe(true);
+        expect(Permission.Create === Permission.Create).toBe(true);
+        expect(Permission.Create.eq(Permission.View)).toBe(false);
+        expect(Permission.Create == Permission.View).toBe(false);
+        expect(Permission.Create === Permission.View).toBe(false);
+        expect(Permission.Delete.neq(Permission.Delete)).toBe(false);
+        expect(Permission.Delete != Permission.Delete).toBe(false);
+        expect(Permission.Delete !== Permission.Delete).toBe(false);
+        expect(Permission.Delete.neq(Permission.Create)).toBe(true);
+        expect(Permission.Delete != Permission.Create).toBe(true);
+        expect(Permission.Delete !== Permission.Create).toBe(true);
+        expect(Permission.Create.gt(Permission.Delete)).toBe(false);
+        expect(Permission.Create > Permission.Delete).toBe(false);
+        expect(Permission.Create.gt(Permission.Edit)).toBe(false);
+        expect(Permission.Create > Permission.Edit).toBe(false);
+        expect(Permission.Edit.gte(Permission.Edit)).toBe(true);
+        expect(Permission.Edit >= Permission.Edit).toBe(true);
+        expect(Permission.View.gte(Permission.Edit)).toBe(false);
+        expect(Permission.View >= Permission.Edit).toBe(false);
+        expect(Permission.None.lt(Permission.View)).toBe(true);
+        expect(Permission.None < Permission.View).toBe(true);
+        expect(Permission.Edit.lt(Permission.View)).toBe(false);
+        expect(Permission.Edit < Permission.View).toBe(false);
+        expect(Permission.Edit.lte(Permission.Edit)).toBe(true);
+        expect(Permission.Edit <= Permission.Edit).toBe(true);
+        expect(Permission.Delete.lte(Permission.Edit)).toBe(false);
+        expect(Permission.Delete <= Permission.Edit).toBe(false);
 
-        expect(Color.lime.eq(Color.lime)).toBe(true);
-        expect(Color.lime.eq(Color.maroon)).toBe(false);
-        expect(Color.maroon.neq(Color.navy)).toBe(true);
-        expect(Color.maroon.neq(Color.maroon)).toBe(false);
-        expect(Color.lime.gt(Color.navy)).toBe(true);
-        expect(Color.lime.gt(Color.silver)).toBe(false);
-        expect(Color.red.gte(Color.navy)).toBe(true);
-        expect(Color.red.gte(Color.silver)).toBe(true);
-        expect(Color.lime.lt(Color.silver)).toBe(true);
-        expect(Color.navy.lt(Color.lime)).toBe(true);
-        expect(Color.silver.lte(Color.maroon)).toBe(false);
-        expect(Color.lime.lte(Color.silver)).toBe(true);
+        expect(Color.Lime.eq(Color.Lime)).toBe(true);
+        expect(Color.Lime == Color.Lime).toBe(true);
+        expect(Color.Lime === Color.Lime).toBe(true);
+        expect(Color.Lime.eq(Color.Maroon)).toBe(false);
+        expect(Color.Lime == Color.Maroon).toBe(false);
+        expect(Color.Lime === Color.Maroon).toBe(false);
+        expect(Color.Maroon.neq(Color.Navy)).toBe(true);
+        expect(Color.Maroon != Color.Navy).toBe(true);
+        expect(Color.Maroon !== Color.Navy).toBe(true);
+        expect(Color.Maroon.neq(Color.Maroon)).toBe(false);
+        expect(Color.Maroon != Color.Maroon).toBe(false);
+        expect(Color.Maroon !== Color.Maroon).toBe(false);
+        expect(Color.Lime.gt(Color.Navy)).toBe(false);
+        expect(Color.Lime > Color.Navy).toBe(false);
+        expect(Color.Lime.gt(Color.Silver)).toBe(false);
+        expect(Color.Lime > Color.Silver).toBe(false);
+        expect(Color.Red.gte(Color.Navy)).toBe(true);
+        expect(Color.Red >= Color.Navy).toBe(true);
+        expect(Color.Red.gte(Color.Silver)).toBe(false);
+        expect(Color.Red >= Color.Silver).toBe(false);
+        expect(Color.Lime.lt(Color.Silver)).toBe(true);
+        expect(Color.Lime < Color.Silver).toBe(true);
+        expect(Color.Navy.lt(Color.Lime)).toBe(false);
+        expect(Color.Navy < Color.Lime).toBe(false);
+        expect(Color.Silver.lte(Color.Maroon)).toBe(false);
+        expect(Color.Silver <= Color.Maroon).toBe(false);
+        expect(Color.Lime.lte(Color.Silver)).toBe(true);
+        expect(Color.Lime <= Color.Silver).toBe(true);
 
-        expect(Shape.triangle.eq(Shape.triangle)).toBe(true);
-        expect(Shape.triangle.eq(Shape.heptagon)).toBe(false);
-        expect(Shape.square.neq(Shape.triangle)).toBe(true);
-        expect(Shape.square.neq(Shape.square)).toBe(false);
-        expect(Shape.triangle.gt(Shape.heptagon)).toBe(false);
-        expect(Shape.hexagon.gt(Shape.square)).toBe(true);
-        expect(Shape.hexagon.gte(Shape.hexagon)).toBe(true);
-        expect(Shape.square.gte(Shape.hexagon)).toBe(false);
-        expect(Shape.square.lt(Shape.heptagon)).toBe(true);
-        expect(Shape.hexagon.lt(Shape.triangle)).toBe(false);
-        expect(Shape.triangle.lte(Shape.pentagon)).toBe(true);
-        expect(Shape.pentagon.lte(Shape.square)).toBe(false);
+        expect(Shape.Triangle.eq(Shape.Triangle)).toBe(true);
+        expect(Shape.Triangle == Shape.Triangle).toBe(true);
+        expect(Shape.Triangle === Shape.Triangle).toBe(true);
+        expect(Shape.Triangle.eq(Shape.Heptagon)).toBe(false);
+        expect(Shape.Triangle == Shape.Heptagon).toBe(false);
+        expect(Shape.Triangle === Shape.Heptagon).toBe(false);
+        expect(Shape.Square.neq(Shape.Triangle)).toBe(true);
+        expect(Shape.Square != Shape.Triangle).toBe(true);
+        expect(Shape.Square !== Shape.Triangle).toBe(true);
+        expect(Shape.Square.neq(Shape.Square)).toBe(false);
+        expect(Shape.Square != Shape.Square).toBe(false);
+        expect(Shape.Square !== Shape.Square).toBe(false);
+        expect(Shape.Triangle.gt(Shape.Heptagon)).toBe(false);
+        expect(Shape.Triangle > Shape.Heptagon).toBe(false);
+        expect(Shape.Hexagon.gt(Shape.Square)).toBe(true);
+        expect(Shape.Hexagon > Shape.Square).toBe(true);
+        expect(Shape.Hexagon.gte(Shape.Hexagon)).toBe(true);
+        expect(Shape.Hexagon >= Shape.Hexagon).toBe(true);
+        expect(Shape.Square.gte(Shape.Hexagon)).toBe(false);
+        expect(Shape.Square >= Shape.Hexagon).toBe(false);
+        expect(Shape.Square.lt(Shape.Heptagon)).toBe(true);
+        expect(Shape.Square < Shape.Heptagon).toBe(true);
+        expect(Shape.Hexagon.lt(Shape.Triangle)).toBe(false);
+        expect(Shape.Hexagon < Shape.Triangle).toBe(false);
+        expect(Shape.Triangle.lte(Shape.Pentagon)).toBe(true);
+        expect(Shape.Triangle <= Shape.Pentagon).toBe(true);
+        expect(Shape.Pentagon.lte(Shape.Square)).toBe(false);
+        expect(Shape.Pentagon <= Shape.Square).toBe(false);
+    });
+
+    it('should convert to primitive', () =>
+    {
+        expect(Permission.Create.valueOf()).toBe(Permission.Create.key);
+        expect(Color.Red.valueOf()).toBe(Color.Red.key);
+        expect(Shape.Triangle.valueOf()).toBe(Shape.Triangle.key);
     });
 
     it('should convert to string', () =>
     {
-        expect(Permission.none.toString()).toBe('1');
-        expect(Color.red.toString()).toBe('#FF0000');
-        expect(Shape.triangle.toString()).toBe('1');
+        expect(Permission.None.toString()).toBe('1');
+        expect(Color.Red.toString()).toBe('Red');
+        expect(Shape.Triangle.toString()).toBe('1');
     });
 
     it('should use overridden methods', () =>
     {
-        const shape = Shape.triangle;
+        const shape = Shape.Triangle;
         const context = {} as CanvasRenderingContext2D;
 
         expect(shape.draw(context)).toBe(context);

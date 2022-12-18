@@ -1,12 +1,12 @@
-import { Enumeration, defer } from '../../src';
+import { defer, Enumeration } from '../../src';
 
 export abstract class Shape extends Enumeration<Shape, number> 
 {
-    public static readonly triangle: Shape = defer(() => new Triangle());
-    public static readonly square: Shape = defer(() => new Square());
-    public static readonly pentagon: Shape = defer(() => new Pentagon());
-    public static readonly hexagon: Shape = defer(() => new Hexagon());
-    public static readonly heptagon: Shape = defer(() => new Heptagon());
+    public static readonly Triangle: Shape = defer(() => new Triangle());
+    public static readonly Square: Shape = defer(() => new Square());
+    public static readonly Pentagon: Shape = defer(() => new Pentagon());
+    public static readonly Hexagon: Shape = defer(() => new Hexagon());
+    public static readonly Heptagon: Shape = defer(() => new Heptagon());
 
     public readonly sides: number;
 

@@ -357,6 +357,16 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
     }
     
     /**
+     * Returns the primitive value of enumeration.
+     * 
+     * @returns {TKey} Enumeration key.
+     */
+    public valueOf(): TKey
+    {
+        return this.key;
+    }
+    
+    /**
      * Converts enumeration to string.
      * 
      * @returns {string} String representation of enumeration. 
