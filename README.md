@@ -594,7 +594,7 @@ This call will return `true` if enumeration item is lower than or equals another
 
 ### ValueOf
 
-To convert enumeration item into a primitive value call `toString` method.
+To convert enumeration item into a primitive value call `valueOf` method.
 
 ```typescript
 const value = permission.valueOf();
