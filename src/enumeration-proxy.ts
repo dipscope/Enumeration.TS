@@ -1,5 +1,6 @@
 import { Enumeration } from './enumeration';
 import { EnumerationResolver } from './enumeration-resolver';
+import { isNil } from './functions/is-nil';
 import { Key } from './key';
 
 /**
@@ -44,13 +45,13 @@ export class EnumerationProxy<TEnumeration extends Enumeration<TEnumeration, TKe
     {
         let enumeration = this.enumeration;
 
-        if (enumeration === undefined) 
+        if (isNil(enumeration))
         {
             enumeration = this.enumerationResolver();
 
             this.enumeration = enumeration;
         }
-
+        
         return enumeration;
     }
 }
