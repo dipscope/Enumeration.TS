@@ -4,6 +4,8 @@
 
 `Enumeration.TS` is a small but powerful package which brings support for type safe enums into `TypeScript`. Besides it provides you polymorphic support similar to regular classes to avoid `switch` cases and write better code.
 
+We recommend to use our [official website](https://dipscope.com/enumeration/what-issues-it-solves) to navigate through available features. You can also use the latest documentation described below.
+
 ## Give a star :star:
 
 If you like or are using this project please give it a star. Thanks!
