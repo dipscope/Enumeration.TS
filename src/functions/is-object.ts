@@ -7,5 +7,5 @@
  */
 export function isObject(x: any): x is Record<PropertyKey, any>
 {
-    return typeof x === 'object';
+    return typeof x === 'object' && x !== null;
 }

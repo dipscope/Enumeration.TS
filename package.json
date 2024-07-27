@@ -1,6 +1,6 @@
 {
   "author": "DipScope authors and contributors",
-  "description": "Powerful enums for TypeScript.",
+  "description": "Powerful enums for TypeScript and JavaScript, enhancing code clarity and type safety.",
   "devDependencies": {
     "@types/jasmine": "^3.6.3",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
@@ -21,11 +21,21 @@
   },
   "keywords": [
     "enum",
-    "class",
     "enumeration",
-    "polymorphic",
-    "powerful",
-    "polymorphism"
+    "typescript",
+    "javascript",
+    "type safety",
+    "class enums",
+    "strong typing",
+    "enum utilities",
+    "code clarity",
+    "typed enums",
+    "enum library",
+    "polymorphic enums",
+    "generic enums",
+    "polymorphism",
+    "flexible enums",
+    "dynamic enums"
   ],
   "license": "Apache-2.0",
   "main": "./dist/umd/index.js",

@@ -12,7 +12,7 @@ If you like or are using this project please give it a star. Thanks!
 
 ## Table of contents
 
-* [What issues it solves?](#what-issues-it-solves)
+* [What issues does it solve?](#what-issues-does-it-solve)
 * [Installation](#installation)
 * [Definition](#definition)
     * [Numeric enumeration](#numeric-enumeration)
@@ -40,7 +40,7 @@ If you like or are using this project please give it a star. Thanks!
 * [Notes](#notes)
 * [License](#license)
 
-## What issues it solves?
+## What issues does it solve?
 
 Imagine that we are going to introduce simple coloring concept in our application. So simple that we can use an `Enum` to represent a list of available colors.
 
@@ -225,7 +225,7 @@ export class Permission extends Enumeration<Permission, number>
 }
 ```
 
-In our case we extended it with string based name. If you are using compare operators for numeric `Enum` like `>`, `>=`, `<`, `<=` they are supported without any changes to the code as well as `==`, `===`, `!=`, `!==`.
+In our case we extended it with string based name. If you are using compare operators for numeric `Enum` like `>`, `>=`, `<`, `<=` they are supported without any changes to the code as well as `==`, `!=`.
 
 ```typescript
 // Get a user permission from somewhere.
@@ -618,11 +618,11 @@ This call will convert a key to a string representation.
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the versions section on [NPM project page](https://www.npmjs.com/package/@dipscope/enumeration).
 
-See information about breaking changes, release notes and migration steps between versions in [CHANGELOG.md](https://github.com/dipscope/Enumeration.TS/blob/master/CHANGELOG.md) file.
+See information about breaking changes, release notes and migration steps between versions in [CHANGELOG.md](https://github.com/dipscope/Enumeration.TS/blob/main/CHANGELOG.md) file.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/dipscope/Enumeration.TS/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/dipscope/Enumeration.TS/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
@@ -640,4 +640,4 @@ We wish you good luck and happy coding!
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/dipscope/Enumeration.TS/blob/master/LICENSE.md) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](https://github.com/dipscope/Enumeration.TS/blob/main/LICENSE.md) file for details.
