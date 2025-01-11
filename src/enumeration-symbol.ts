@@ -3,4 +3,4 @@
  * 
  * @type {unique symbol}
  */
-export const enumerationSymbol: unique symbol = Symbol.for('$DSEnumeration');
+export const ENUMERATION_SYMBOL: unique symbol = Symbol.for('$DSEnumeration');

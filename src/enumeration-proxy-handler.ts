@@ -1,6 +1,6 @@
 import { Enumeration } from './enumeration';
 import { EnumerationProxy } from './enumeration-proxy';
-import { enumerationSymbol } from './enumeration-symbol';
+import { ENUMERATION_SYMBOL } from './enumeration-symbol';
 import { Key } from './key';
 
 /**
@@ -23,7 +23,7 @@ export class EnumerationProxyHandler<TEnumeration extends Enumeration<TEnumerati
     public get(enumerationProxy: EnumerationProxy<TEnumeration, TKey>, propertyKey: PropertyKey): any
     {
         const enumeration = enumerationProxy.resolveEnumeration() as any;
-        const value = propertyKey === enumerationSymbol ? enumeration : enumeration[propertyKey];
+        const value = propertyKey === ENUMERATION_SYMBOL ? enumeration : enumeration[propertyKey];
 
         return value;
     }

@@ -2,10 +2,7 @@ import { Comparer } from './comparer';
 import { NumberComparer } from './comparers/number-comparer';
 import { StringComparer } from './comparers/string-comparer';
 import { EnumerationCtor } from './enumeration-ctor';
-import { enumerationSymbol } from './enumeration-symbol';
-import { isNil } from './functions/is-nil';
-import { isNumber } from './functions/is-number';
-import { isObject } from './functions/is-object';
+import { ENUMERATION_SYMBOL } from './enumeration-symbol';
 import { Key } from './key';
 
 /**
@@ -162,13 +159,13 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
         enumerationCtor: EnumerationCtor<TEnumeration, TKey>
     ): Map<TKey, TEnumeration>
     {
-        let entries = enumerationCtor.prototype[enumerationSymbol] as Map<TKey, TEnumeration>;
+        let entries = enumerationCtor.prototype[ENUMERATION_SYMBOL] as Map<TKey, TEnumeration>;
 
-        if (isNil(entries))
+        if (entries === undefined || entries === null)
         {
             entries = Enumeration.collect(enumerationCtor);
 
-            Object.defineProperty(enumerationCtor.prototype, enumerationSymbol, {
+            Object.defineProperty(enumerationCtor.prototype, ENUMERATION_SYMBOL, {
                 enumerable: false,
                 configurable: false,
                 writable: false,
@@ -192,12 +189,12 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
     {
         const enumerations = new Array<TEnumeration>();
         const entries = Object.entries(enumerationCtor);
-        
-        for (const entry of entries)
-        {
-            const value = entry[1];
 
-            if (isNil(value))
+        for (let i = 0; i < entries.length; i++)
+        {
+            const value = entries[i][1];
+
+            if (value === undefined || value === null)
             {
                 continue;
             }
@@ -209,7 +206,7 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
                 continue;
             }
 
-            if (isObject(value) && value[enumerationSymbol] instanceof enumerationCtor)
+            if (typeof value === 'object' && value[ENUMERATION_SYMBOL] instanceof enumerationCtor)
             {
                 enumerations.push(value);
 
@@ -234,9 +231,9 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
 
         const map = new Map<TKey, TEnumeration>();
 
-        for (const enumeration of enumerations)
+        for (let i = 0; i < enumerations.length; i++)
         {
-            map.set(enumeration.key, enumeration);
+            map.set(enumerations[i].key, enumerations[i]);
         }
 
         return map;
@@ -251,7 +248,7 @@ export abstract class Enumeration<TEnumeration extends Enumeration<TEnumeration,
      */
     private static defineComparer<TKey extends Key>(key: TKey): Comparer<Key>
     {
-        const comparer = isNumber(key) ? this.numberComparer : this.stringComparer;
+        const comparer = typeof key === 'number' ? this.numberComparer : this.stringComparer;
 
         return comparer;
     }
